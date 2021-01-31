@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import logo from '../assets/img/logo.png'
 
+import { Link } from 'react-router-dom'
+
 const HeaderStyles = styled.header`
   padding: 4rem 0;
   text-align: center;
@@ -16,7 +18,9 @@ const HeaderStyles = styled.header`
 
 const Header = () => (
   <HeaderStyles>
-    <img src={logo} alt='Logo Elena & Jannik' />
+    <Link to='/'>
+      <img src={logo} alt='Logo Elena & Jannik' />
+    </Link>
   </HeaderStyles>
 )
 
