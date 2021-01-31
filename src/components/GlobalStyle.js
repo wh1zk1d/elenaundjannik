@@ -51,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
     margin-bottom: 4rem;
   }
 
-  img + .content {
+  .content + img + .content {
     margin-top: 4rem;
   }
 
