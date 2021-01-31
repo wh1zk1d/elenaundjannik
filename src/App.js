@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Layout from './components/Layout'
+import Home from './views/Home'
+import Wishlist from './views/Wishlist'
+import Guestbook from './views/Guestbook'
+import BetterCallHannah from './views/Hannah'
 
-export default App;
+const App = () => (
+  <Layout>
+    <Switch>
+      <Route path='/gästebuch'>
+        <Guestbook />
+      </Route>
+      <Route path='/wunschliste'>
+        <Wishlist />
+      </Route>
+      <Route path='/festleiterin'>
+        <BetterCallHannah />
+      </Route>
+      <Route path='/'>
+        <Home />
+      </Route>
+    </Switch>
+  </Layout>
+)
+
+export default App
