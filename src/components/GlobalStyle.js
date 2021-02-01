@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background: url(${beachBg}) no-repeat center center / cover;
+    background-attachment: fixed;
     color: #1a2a3a;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 2rem;
