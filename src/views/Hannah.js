@@ -9,8 +9,8 @@ export default function Hannah() {
       </div>
       <img src={hannling} alt='Hannling' />
       <div className='content'>
-        <a href='tel:015789520157' title='Hannah anrufen'>
-          Hannah anrufen
+        <a href='https://wa.me/4915789520157' target='_blank' rel='noreferrer' title='Hannah anrufen'>
+          Hannah schreiben
         </a>
       </div>
     </div>
