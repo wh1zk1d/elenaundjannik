@@ -74,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .pink {
+  .pink, i {
     color: var(--pink);
     font-style: italic;
   }
@@ -82,6 +82,24 @@ const GlobalStyle = createGlobalStyle`
   .audio-title {
     font-size: 1.6rem;
     padding-top: 1rem;
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: 4px solid var(--blue);
+    color: var(--blue);
+    font-family: 'Josefin Sans';
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1.5rem 2rem;
+
+    &:hover {
+      background: var(--blue);
+      color: var(--pink);
+      cursor: pointer;
+    }
   }
 `
 
