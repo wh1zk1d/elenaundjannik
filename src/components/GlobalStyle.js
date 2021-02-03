@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import '@fontsource/spicy-rice'
 import '@fontsource/josefin-sans'
 
-import beachBg from '../assets/img/beach_bg.png'
+import beachBg from '../assets/img/beach_bg.jpg'
 
 const GlobalStyle = createGlobalStyle`
   :root {
