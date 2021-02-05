@@ -1,6 +1,15 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 
+const WishlistStyles = styled.div`
+  margin-top: 6rem;
+
+  .examples-notice {
+    border-top: 1px dashed var(--blue);
+    padding: 8rem 0 4rem 0;
+  }
+`
+
 const ItemStyles = styled.div`
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -33,8 +42,12 @@ const ItemStyles = styled.div`
 
   &.checked {
     cursor: not-allowed;
-    opacity: 0.4;
+    opacity: 0.2;
     filter: grayscale(100%);
+
+    h2 {
+      color: var(--blue);
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -65,8 +78,10 @@ const Item = ({ link, title, example, isChecked, id }) => {
       <div>
         {checked ? (
           <>
-            <h2>{title}</h2>
-            <p>Schon weg</p>
+            <h2>{title} (schon weg)</h2>
+            <a href={link} target='_blank' rel='noreferrer'>
+              Zum Artikel
+            </a>
           </>
         ) : (
           <div>
@@ -109,7 +124,8 @@ const Loading = () => <LoadingStyles>Momentchen, die Liste lädt grad noch...</L
 
 export default function Wishlist() {
   const [isLoading, setLoading] = useState(false)
-  const [data, setData] = useState(null)
+  const [items, setItems] = useState(null)
+  const [exampleItems, setExampleItems] = useState(null)
   const [error, setError] = useState(false)
 
   useEffect(() => {
@@ -121,7 +137,9 @@ export default function Wishlist() {
         if (!res.ok) throw new Error('smth went wrong')
 
         const { data } = await res.json()
-        setData(data)
+
+        setExampleItems(data.filter(item => item.data.isExample))
+        setItems(data.filter(item => !item.data.isExample))
       } catch (error) {
         setError(true)
       }
@@ -137,22 +155,18 @@ export default function Wishlist() {
       <div className='content'>
         <p>Wir sind jung und brauchen das Geld...</p>
         <p>
-          Wenn ihr uns etwas schenken wollt, freuen wir uns natürlich sehr über <i>alle</i> Geschenke.
-        </p>
-        <p>Falls ihr noch Ideen sucht, haben wir hier eine Liste mit Sachen, über die wir uns freuen würden :)</p>
-        <p>
-          Über 'Hier klicken' kommt ihr zur Bestellseite. Überall wo 'Zum Beispiel' steht, könnt ihr uns auch gerne eine
-          Alternative eurer Wahl zu unserem Vorschlag schenken.
+          Wenn ihr uns etwas schenken wollt, freuen wir uns natürlich sehr über <i>alle</i> Geschenke. Falls ihr noch
+          Ideen sucht, haben wir hier eine Liste mit Sachen, über die wir uns freuen würden :)
         </p>
         <p>
-          Wenn ihr uns einen dieser Wünsche erfüllen wollt, klickt einfach auf 'Als geschenkt markieren' unter dem
-          Eintrag, dann sehen andere, dass das schon verschenkt wurde (durchgestrichen und grau).
+          Wenn ihr uns einen dieser Wünsche erfüllen möchtet, klickt einfach auf 'Als geschenkt markieren'. Auf 'Zum
+          Artikel' kommt ihr auf die jeweilige Bestellseite.
         </p>
         {isLoading ? <Loading /> : null}
         {error ? 'Mist, da ist was schiefgelaufen. Probiers später nochmal.' : null}
-        {data && (
-          <div style={{ marginTop: '6rem' }}>
-            {data.map(item => (
+        {items && (
+          <WishlistStyles>
+            {items.map(item => (
               <Item
                 key={item.ref['@ref'].id}
                 title={item.data.name}
@@ -162,7 +176,20 @@ export default function Wishlist() {
                 id={item.ref['@ref'].id}
               />
             ))}
-          </div>
+            <div className='examples-notice'>
+              Ab hier sind unsere Ideen nur Vorschläge – bestellt gerne alternative Artikel, die euch besser gefallen.
+            </div>
+            {exampleItems.map(item => (
+              <Item
+                key={item.ref['@ref'].id}
+                title={item.data.name}
+                link={item.data.link}
+                example={item.data.isExample}
+                isChecked={item.data.checked}
+                id={item.ref['@ref'].id}
+              />
+            ))}
+          </WishlistStyles>
         )}
       </div>
     </div>

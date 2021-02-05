@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
 
   .page-title {
     color: var(--blue);
-    font-size: 4.6rem;
+    font-size: 4.2rem;
     letter-spacing: 2px;
     margin-bottom: 4rem;
   }
@@ -58,6 +58,11 @@ const GlobalStyle = createGlobalStyle`
 
   .content {
     margin-bottom: 4rem;
+
+    p {
+      max-width: 65ch;
+      margin: 0 auto;
+    }
 
     a {
       color: var(--pink);
@@ -94,6 +99,16 @@ const GlobalStyle = createGlobalStyle`
       background: var(--blue);
       color: var(--pink);
       cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    body {
+      font-size: 1.6rem;
+    }
+
+    .page-title {
+      font-size: 3.6rem;
     }
   }
 `

@@ -9,9 +9,12 @@ export default function Hannah() {
       </div>
       <img src={hannling} alt='Hannling' />
       <div className='content'>
-        <a href='https://wa.me/4915789520157' target='_blank' rel='noreferrer' title='Hannah schreiben'>
-          Hannah schreiben
-        </a>
+        <p>Ablauf, Programm, Geschenke oder allgemeine Fragen des Lebens...</p>
+        <p>
+          <a href='https://wa.me/4915789520157' target='_blank' rel='noreferrer' title='Hannah schreiben'>
+            Hannah schreiben
+          </a>
+        </p>
       </div>
     </div>
   )
