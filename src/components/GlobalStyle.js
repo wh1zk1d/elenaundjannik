@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     background-attachment: fixed;
     color: #1a2a3a;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1.4;
     min-height: 100vh;
   }
@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
 
   .page-title {
     color: var(--blue);
-    font-size: 5rem;
+    font-size: 4.6rem;
     letter-spacing: 2px;
     margin-bottom: 4rem;
   }
@@ -58,11 +58,6 @@ const GlobalStyle = createGlobalStyle`
 
   .content {
     margin-bottom: 4rem;
-
-    p {
-      max-width: 42ch;
-      margin: 0 auto;
-    }
 
     a {
       color: var(--pink);

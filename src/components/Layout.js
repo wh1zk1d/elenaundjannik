@@ -45,6 +45,7 @@ const Nav = styled.nav`
 
   ul li a {
     color: var(--pink);
+    font-size: 2rem;
 
     &:hover,
     &.active {
