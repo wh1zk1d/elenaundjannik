@@ -104,6 +104,7 @@ const GlobalStyle = createGlobalStyle`
 
   @media screen and (max-width: 640px) {
     body {
+      background: salmon;
       font-size: 1.6rem;
     }
 
