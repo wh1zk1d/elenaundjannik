@@ -13,8 +13,6 @@ exports.handler = async function (event, context, callback) {
     )
   )
 
-  // const allItems = await itemDocs.data.map(document => document.data)
-
   return callback(null, {
     statusCode: 200,
     body: JSON.stringify(items),

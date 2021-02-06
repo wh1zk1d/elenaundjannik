@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { useState, useEffect } from 'react'
+import styled from 'styled-components'
 
 const WishlistStyles = styled.div`
   margin-top: 6rem;
@@ -27,17 +27,8 @@ const ItemStyles = styled.div`
     margin-bottom: 1rem;
   }
 
-  span:not(.example-link) {
-    color: var(--pink);
-  }
-
   a {
     color: var(--blue) !important;
-  }
-
-  .example-link .example {
-    color: var(--blue);
-    font-style: italic;
   }
 
   &.checked {
@@ -65,11 +56,21 @@ const LoadingStyles = styled.div`
 
 const Item = ({ link, title, example, isChecked, id }) => {
   const [checked, setChecked] = useState(isChecked)
-  const [isArray] = useState(typeof link === 'object')
+  const [submitting, setSubmitting] = useState(false)
 
-  const handleClick = () => {
+  const hasMultipleLinks = typeof link === 'object'
+
+  const handleClick = async () => {
+    setSubmitting(true)
     if (window.confirm(`Möchtest du uns "${title}" schenken?`)) {
-      setChecked(true)
+      try {
+        const res = await fetch(`/.netlify/functions/updateWishlist?ref=${id}`)
+        if (!res.ok) throw new Error()
+        setChecked(true)
+      } catch (error) {
+        alert('Mist, da ist was schiefgelaufen. Probiers bitte später nochmal.')
+      }
+      setSubmitting(false)
     }
   }
 
@@ -86,7 +87,7 @@ const Item = ({ link, title, example, isChecked, id }) => {
         ) : (
           <div>
             <h2>{title}</h2>
-            {isArray ? (
+            {hasMultipleLinks ? (
               link.map((url, i) => (
                 <span key={url}>
                   <a href={url} title={title} target='_blank' rel='noreferrer'>
@@ -97,13 +98,7 @@ const Item = ({ link, title, example, isChecked, id }) => {
               ))
             ) : (
               <a href={link} title={title} target='_blank' rel='noreferrer'>
-                {example ? (
-                  <span className='example-link'>
-                    Zum <span className='example'>Beispiel</span> hier
-                  </span>
-                ) : (
-                  'Zum Artikel'
-                )}
+                {example ? 'Zum Beispiel hier' : 'Zum Artikel'}
               </a>
             )}
           </div>
@@ -111,16 +106,14 @@ const Item = ({ link, title, example, isChecked, id }) => {
       </div>
       {!checked && (
         <div>
-          <button onClick={handleClick} data-ref={id}>
-            Als geschenkt markieren
+          <button onClick={handleClick} disabled={submitting}>
+            {submitting ? 'Senden...' : 'Als geschenkt markieren'}
           </button>
         </div>
       )}
     </ItemStyles>
   )
 }
-
-const Loading = () => <LoadingStyles>Momentchen, die Liste lädt grad noch...</LoadingStyles>
 
 export default function Wishlist() {
   const [isLoading, setLoading] = useState(false)
@@ -132,7 +125,7 @@ export default function Wishlist() {
     const fetchItems = async () => {
       setLoading(true)
       try {
-        const res = await fetch('/.netlify/functions/wishlist')
+        const res = await fetch('/.netlify/functions/getWishlist')
 
         if (!res.ok) throw new Error('smth went wrong')
 
@@ -162,7 +155,7 @@ export default function Wishlist() {
           Wenn ihr uns einen dieser Wünsche erfüllen möchtet, klickt einfach auf 'Als geschenkt markieren'. Auf 'Zum
           Artikel' kommt ihr auf die jeweilige Bestellseite.
         </p>
-        {isLoading ? <Loading /> : null}
+        {isLoading ? <LoadingStyles>Momentchen, die Liste lädt grad noch...</LoadingStyles> : null}
         {error ? 'Mist, da ist was schiefgelaufen. Probiers später nochmal.' : null}
         {items && (
           <WishlistStyles>
