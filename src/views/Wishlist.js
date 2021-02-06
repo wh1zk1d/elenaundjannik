@@ -61,8 +61,8 @@ const Item = ({ link, title, example, isChecked, id }) => {
   const hasMultipleLinks = typeof link === 'object'
 
   const handleClick = async () => {
-    setSubmitting(true)
     if (window.confirm(`Möchtest du uns "${title}" schenken?`)) {
+      setSubmitting(true)
       try {
         const res = await fetch(`/.netlify/functions/updateWishlist?ref=${id}`)
         if (!res.ok) throw new Error()
