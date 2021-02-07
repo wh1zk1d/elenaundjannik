@@ -15,7 +15,9 @@ const ErrorStyles = styled.div`
 `
 
 const Comment = styled.div`
+  border: 2px dashed #dcdcdc;
   font-size: 2rem;
+  padding: 20px 16px 16px 16px;
   max-width: 65ch;
   margin: 4rem auto;
   text-align: left;
@@ -23,11 +25,6 @@ const Comment = styled.div`
   strong {
     color: var(--pink);
   }
-`
-
-const Sender = styled.span`
-  display: block;
-  margin-bottom: 1rem;
 `
 
 const TextBox = () => {
@@ -90,10 +87,7 @@ export default function Guestbook() {
         {data &&
           data.map((comment, i) => (
             <Comment key={i}>
-              <Sender>
-                <strong>Von:</strong> {comment.name}
-              </Sender>
-              <strong>Nachricht:</strong> {comment.message}
+              <strong>{comment.name}:</strong> "{comment.message}"
             </Comment>
           ))}
       </div>

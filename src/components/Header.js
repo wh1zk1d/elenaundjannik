@@ -9,9 +9,10 @@ const HeaderStyles = styled.header`
 
   @media screen and (max-width: 640px) {
     padding-top: 0;
+    padding-bottom: 2rem;
 
     img {
-      width: 280px;
+      height: 36px;
     }
   }
 `

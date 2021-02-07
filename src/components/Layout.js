@@ -18,20 +18,13 @@ const Wrapper = styled.div`
   @media screen and (max-width: 640px) {
     margin: 50px auto 150px auto;
     padding: 30px 15px;
+    width: 92%;
   }
 `
 
 const Nav = styled.nav`
   font-family: 'Spicy Rice', cursive;
   margin-bottom: 4rem;
-
-  @media screen and (max-width: 640px) {
-    ul {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-  }
 
   ul {
     display: flex;
@@ -50,6 +43,12 @@ const Nav = styled.nav`
     &:hover,
     &.active {
       color: var(--blue);
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    ul li {
+      margin: 0 6px;
     }
   }
 `
