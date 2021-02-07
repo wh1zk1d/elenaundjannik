@@ -25,6 +25,10 @@ const Comment = styled.div`
   strong {
     color: var(--pink);
   }
+
+  @media screen and (max-width: 640px) {
+    font-size: 1.8rem;
+  }
 `
 
 const TextBox = () => {

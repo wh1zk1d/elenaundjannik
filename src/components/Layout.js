@@ -47,8 +47,9 @@ const Nav = styled.nav`
   }
 
   @media screen and (max-width: 640px) {
-    ul li {
-      margin: 0 6px;
+    ul {
+      flex-direction: column;
+      text-align: center;
     }
   }
 `
