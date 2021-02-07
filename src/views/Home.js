@@ -4,7 +4,6 @@ import iCal from '../assets/event.ics'
 export default function Home() {
   return (
     <div>
-      <h2 className='page-title'>Unsere Hochzeit</h2>
       <div className='content'>
         <p>
           Am{' '}

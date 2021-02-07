@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  border-top: 1px dashed var(--blue);
+  border-top: 1px solid var(--pink);
   margin: 0 auto;
   padding-top: 6rem;
   width: 85%;

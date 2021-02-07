@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useQuery } from 'react-query'
 import styled from 'styled-components'
 
 const WishlistStyles = styled.div`
@@ -49,6 +50,12 @@ const ItemStyles = styled.div`
 `
 
 const LoadingStyles = styled.div`
+  color: var(--pink);
+  text-transform: uppercase;
+  margin-top: 6rem;
+`
+
+const ErrorStyles = styled.div`
   color: var(--pink);
   text-transform: uppercase;
   margin-top: 6rem;
@@ -116,35 +123,14 @@ const Item = ({ link, title, example, isChecked, id }) => {
 }
 
 export default function Wishlist() {
-  const [isLoading, setLoading] = useState(false)
-  const [items, setItems] = useState(null)
-  const [exampleItems, setExampleItems] = useState(null)
-  const [error, setError] = useState(false)
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      setLoading(true)
-      try {
-        const res = await fetch('/.netlify/functions/getWishlist')
-
-        if (!res.ok) throw new Error('smth went wrong')
-
-        const { data } = await res.json()
-
-        setExampleItems(data.filter(item => item.data.isExample))
-        setItems(data.filter(item => !item.data.isExample))
-      } catch (error) {
-        setError(true)
-      }
-      setLoading(false)
-    }
-
-    fetchItems()
-  }, [])
+  const { isLoading, error, data } = useQuery('wishlistData', async () => {
+    const res = await fetch('/.netlify/functions/getWishlist')
+    const data = await res.json()
+    return data
+  })
 
   return (
     <div>
-      <h2 className='page-title'>Unsere Wunschliste</h2>
       <div className='content'>
         <p>Wir sind jung und brauchen das Geld...</p>
         <p>
@@ -156,32 +142,36 @@ export default function Wishlist() {
           Artikel' kommt ihr auf die jeweilige Bestellseite.
         </p>
         {isLoading ? <LoadingStyles>Momentchen, die Liste lädt grad noch...</LoadingStyles> : null}
-        {error ? 'Mist, da ist was schiefgelaufen. Probiers später nochmal.' : null}
-        {items && (
+        {error ? <ErrorStyles>Mist, da ist was schiefgelaufen. Probiers später nochmal.</ErrorStyles> : null}
+        {data && (
           <WishlistStyles>
-            {items.map(item => (
-              <Item
-                key={item.ref['@ref'].id}
-                title={item.data.name}
-                link={item.data.link}
-                example={item.data.isExample}
-                isChecked={item.data.checked}
-                id={item.ref['@ref'].id}
-              />
-            ))}
+            {data
+              .filter(item => !item.isExample)
+              .map(item => (
+                <Item
+                  key={item.link}
+                  title={item.name}
+                  link={item.link}
+                  example={item.isExample}
+                  isChecked={item.checked}
+                  id={item.ref['@ref'].id}
+                />
+              ))}
             <div className='examples-notice'>
               Ab hier sind unsere Ideen nur Vorschläge – bestellt gerne alternative Artikel, die euch besser gefallen.
             </div>
-            {exampleItems.map(item => (
-              <Item
-                key={item.ref['@ref'].id}
-                title={item.data.name}
-                link={item.data.link}
-                example={item.data.isExample}
-                isChecked={item.data.checked}
-                id={item.ref['@ref'].id}
-              />
-            ))}
+            {data
+              .filter(item => item.isExample)
+              .map(item => (
+                <Item
+                  key={item.link}
+                  title={item.name}
+                  link={item.link}
+                  example={item.isExample}
+                  isChecked={item.checked}
+                  id={item.ref['@ref'].id}
+                />
+              ))}
           </WishlistStyles>
         )}
       </div>

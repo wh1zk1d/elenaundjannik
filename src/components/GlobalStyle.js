@@ -84,6 +84,29 @@ const GlobalStyle = createGlobalStyle`
     padding-top: 1rem;
   }
 
+  form {
+    margin: 6rem 0 8rem 0;
+  }
+
+  input, textarea {
+    border: 3px solid var(--blue);
+    color: var(--blue);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.8rem;
+    display: block;
+    margin: 2rem auto;
+    line-height: 1;
+    padding: 16px 10px;
+    width: 42ch;
+    max-width: 100%;
+    transition: border 0.2s ease;
+
+    &:focus {
+      border-color: var(--pink);
+      outline: 0 none;
+    }
+  }
+
   button {
     appearance: none;
     background: none;
@@ -99,6 +122,10 @@ const GlobalStyle = createGlobalStyle`
       background: var(--blue);
       color: var(--pink);
       cursor: pointer;
+    }
+
+    &:disabled {
+      opacity: 0.6;
     }
   }
 

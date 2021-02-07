@@ -3,7 +3,6 @@ import hannling from '../assets/img/hannah.jpg'
 export default function Hannah() {
   return (
     <div>
-      <h2 className='page-title'>Unsere Festleiterin</h2>
       <div className='content'>
         <p>Hannah Madeleine Thom – unser Mädsche für alles.</p>
       </div>
