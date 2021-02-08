@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   box-shadow: 10px 10px 0px var(--blue);
   width: 90%;
   max-width: 1100px;
-  margin: 150px auto;
+  margin: 100px auto 150px auto;
   padding: 45px 15px;
 
   @media screen and (max-width: 640px) {

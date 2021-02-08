@@ -11,7 +11,7 @@ export default function Hannah() {
         <p>Ablauf, Programm, Geschenke oder allgemeine Fragen des Lebens...</p>
         <p>
           <a href='https://wa.me/4915789520157' target='_blank' rel='noreferrer' title='Hannah schreiben'>
-            Hannah schreiben
+            Hannah auf WhatsApp schreiben
           </a>
         </p>
       </div>

@@ -20,7 +20,7 @@ const HeaderStyles = styled.header`
 const Header = () => (
   <HeaderStyles>
     <Link to='/'>
-      <img src={logo} height='54' alt='Logo Elena & Jannik' />
+      <img src={logo} height='96' alt='Logo Elena & Jannik' />
     </Link>
   </HeaderStyles>
 )
