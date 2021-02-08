@@ -12,7 +12,7 @@ const HeaderStyles = styled.header`
     padding-bottom: 2rem;
 
     img {
-      height: 36px;
+      height: 45px;
     }
   }
 `
