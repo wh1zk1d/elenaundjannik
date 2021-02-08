@@ -19,6 +19,12 @@ export default function Home() {
           ne gute Zeit mit uns.
         </p>
         <p>
+          Zoom ID: 847 445 419
+          <br />
+          Passwort: 574412
+          <br />
+        </p>
+        <p>
           <a
             href='https://zoom.us/j/847445419?pwd=aERQUHhUWjBCdjg5eUE4SUZtdk4zZz09'
             target='_blank'

@@ -8,8 +8,7 @@ const HeaderStyles = styled.header`
   text-align: center;
 
   @media screen and (max-width: 640px) {
-    padding-top: 0;
-    padding-bottom: 2rem;
+    padding: 2rem 0;
 
     img {
       height: 60px;
