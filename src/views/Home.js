@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import couple from '../assets/img/couple.jpg'
 import iCal from '../assets/event.ics'
 
@@ -16,22 +18,10 @@ export default function Home() {
         </p>
         <p>
           Unsere Ansprache findet um 16Uhr statt. Seid am besten 10-15 Minuten vorher am Start. Wählt euch ein und habt
-          ne gute Zeit mit uns.
+          ne gute Zeit mit uns :)
         </p>
         <p>
-          Zoom ID: 847 445 419
-          <br />
-          Passwort: 574412
-          <br />
-        </p>
-        <p>
-          <a
-            href='https://zoom.us/j/847445419?pwd=aERQUHhUWjBCdjg5eUE4SUZtdk4zZz09'
-            target='_blank'
-            rel='noreferrer'
-            title='Ab zu Zoom'>
-            Hier gehts direkt zu Zoom
-          </a>
+          Die Einwahldaten bekommt ihr von unserer <Link to='/festleiterin'>Festleiterin Hannah</Link>
         </p>
       </div>
       <img src={couple} alt='Die 2 Sahneschnittchen' />
