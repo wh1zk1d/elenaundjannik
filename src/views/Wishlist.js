@@ -88,7 +88,7 @@ const Item = ({ link, title, example, isChecked, id }) => {
           <>
             <h2>{title} (schon weg)</h2>
             <a href={link} target='_blank' rel='noreferrer'>
-              Zum Artikel
+              {example ? 'Zum Beispiel hier' : 'Zum Artikel'}
             </a>
           </>
         ) : (
@@ -132,6 +132,7 @@ export default function Wishlist() {
   return (
     <div>
       <div className='content'>
+        <h1 className='page-title'>Erstmal: Vielen Dank!</h1>
         <p>Wir sind jung und brauchen das Geld...</p>
         <p>
           Wenn ihr uns etwas schenken wollt, freuen wir uns natürlich sehr über <i>alle</i> Geschenke. Falls ihr noch
