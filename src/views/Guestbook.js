@@ -51,7 +51,14 @@ const TextBox = () => {
 
     setLoading(true)
     try {
-      const res = await fetch(`/.netlify/functions/addMessage?name=${name}&message=${text}`)
+      const res = await fetch(
+        `/.netlify/functions/addMessage?name=${encodeURIComponent(name)}&message=${encodeURIComponent(text)}`,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      )
       if (!res.ok) throw new Error()
       setName('')
       setText('')

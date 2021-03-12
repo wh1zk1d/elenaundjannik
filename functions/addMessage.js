@@ -8,6 +8,13 @@ const client = new faunadb.Client({
 exports.handler = async function (event, context, callback) {
   const { name, message } = event.queryStringParameters
 
+  if (!name || !message) {
+    return callback(null, {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'invalid data' }),
+    })
+  }
+
   const doc = await client.query(q.Create(q.Collection('comments'), { data: { name: name, message: message } }))
 
   return callback(null, {
