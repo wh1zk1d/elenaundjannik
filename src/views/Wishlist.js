@@ -8,6 +8,11 @@ const WishlistStyles = styled.div`
   .examples-notice {
     border-top: 1px dashed var(--blue);
     padding: 8rem 0 4rem 0;
+
+    h2 {
+      color: var(--blue);
+      font-family: 'Josefin Sans', sans-serif;
+    }
   }
 `
 
@@ -147,7 +152,7 @@ export default function Wishlist() {
         {data && (
           <WishlistStyles>
             {data
-              .filter(item => !item.isExample)
+              .filter(item => !item.isExample && !item.checked)
               .map(item => (
                 <Item
                   key={item.link}
@@ -158,11 +163,29 @@ export default function Wishlist() {
                   id={item.ref['@ref'].id}
                 />
               ))}
+
             <div className='examples-notice'>
               Ab hier sind unsere Ideen nur Vorschläge – bestellt gerne alternative Artikel, die euch besser gefallen.
             </div>
+
             {data
-              .filter(item => item.isExample)
+              .filter(item => item.isExample && !item.checked)
+              .map(item => (
+                <Item
+                  key={item.link}
+                  title={item.name}
+                  link={item.link}
+                  example={item.isExample}
+                  isChecked={item.checked}
+                  id={item.ref['@ref'].id}
+                />
+              ))}
+
+            <div className='examples-notice'>
+              <h2>Bereits geschenkt</h2>
+            </div>
+            {data
+              .filter(item => item.checked)
               .map(item => (
                 <Item
                   key={item.link}
