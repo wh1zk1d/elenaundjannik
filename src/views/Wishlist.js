@@ -140,36 +140,22 @@ export default function Wishlist() {
         <h1 className='page-title'>Erstmal: Vielen Dank!</h1>
         <p>Wir sind jung und brauchen das Geld...</p>
         <p>
-          Wenn ihr uns etwas schenken wollt, freuen wir uns natürlich sehr über <i>alle</i> Geschenke. Falls ihr noch
-          Ideen sucht, haben wir hier eine Liste mit Sachen, über die wir uns freuen würden :)
+          Wenn ihr uns etwas schenken wollt, freuen wir uns natürlich sehr über <i>alle</i>{' '}
+          Geschenke. Falls ihr noch Ideen sucht, haben wir hier eine Liste mit Sachen, über die wir
+          uns freuen würden :)
         </p>
         <p>
-          Wenn ihr uns einen dieser Wünsche erfüllen möchtet, klickt einfach auf 'Als geschenkt markieren'. Auf 'Zum
-          Artikel' kommt ihr auf die jeweilige Bestellseite.
+          Wenn ihr uns einen dieser Wünsche erfüllen möchtet, klickt einfach auf 'Als geschenkt
+          markieren'. Auf 'Zum Artikel' kommt ihr auf die jeweilige Bestellseite.
         </p>
         {isLoading ? <LoadingStyles>Momentchen, die Liste lädt grad noch...</LoadingStyles> : null}
-        {error ? <ErrorStyles>Mist, da ist was schiefgelaufen. Probiers später nochmal.</ErrorStyles> : null}
+        {error ? (
+          <ErrorStyles>Mist, da ist was schiefgelaufen. Probiers später nochmal.</ErrorStyles>
+        ) : null}
         {data && (
           <WishlistStyles>
             {data
               .filter(item => !item.isExample && !item.checked)
-              .map(item => (
-                <Item
-                  key={item.link}
-                  title={item.name}
-                  link={item.link}
-                  example={item.isExample}
-                  isChecked={item.checked}
-                  id={item.ref['@ref'].id}
-                />
-              ))}
-
-            <div className='examples-notice'>
-              Ab hier sind unsere Ideen nur Vorschläge – bestellt gerne alternative Artikel, die euch besser gefallen.
-            </div>
-
-            {data
-              .filter(item => item.isExample && !item.checked)
               .map(item => (
                 <Item
                   key={item.link}
