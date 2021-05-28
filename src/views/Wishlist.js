@@ -168,7 +168,7 @@ export default function Wishlist() {
               ))}
 
             <div className='examples-notice'>
-              <h2>Bereits geschenkt</h2>
+              <h2>Alles schon weg :)</h2>
             </div>
             {data
               .filter(item => item.checked)
